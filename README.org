@@ -1,8 +1,8 @@
 * Spring 2022 235 Assignments
 
-* Last name:
+* Last name: Rao
 
-* First name:
+* First name: Ivan
 
 * GitHub username:
 
@@ -17,7 +17,3 @@
   create and where to place them.
 - Projects will be in their own folders. Each assigned project will
   include the specific details required.
-
-  
-
-
