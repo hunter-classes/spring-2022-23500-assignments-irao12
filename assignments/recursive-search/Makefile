@@ -8,4 +8,4 @@ funcs.o: funcs.cpp funcs.h
 	g++ -c funcs.cpp
 
 clean:
-	rm -f main.o funcs.o a.out 
+	rm -f main.o funcs.o main
