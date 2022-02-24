@@ -10,13 +10,13 @@ int main(){
   }
   initialize(board, SIZE);
 
-  std::cout << "Initial Empty Board" << '\n';
-  print_board(board, SIZE);
-  std::cout << '\n';
-  std::cout << "After solving:" << '\n';
+  std::cout << "A solution with the knight starting at the top left corner" << '\n';
   solve(board, SIZE, 0, 0, 1);
   print_board(board, SIZE);
 
-
+  initialize(board, SIZE);
+  std::cout << "A solution with the knight starting at the bottom right corner" << '\n';
+  solve(board, SIZE, 4, 4, 1);
+  print_board(board, SIZE);
   return 0;
 }
