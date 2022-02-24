@@ -24,6 +24,7 @@ int main(){
   //deletes the board
   for (int i = 0; i < SIZE; i++){
     delete [] board[i];
+    board[i] = nullptr;
   }
   delete [] board;
   board = nullptr;
