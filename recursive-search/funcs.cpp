@@ -55,8 +55,8 @@ void solve(int ** board, int size, int row, int col, int counter){
   if (!is_complete(board, size)) solve(board, size, row+2, col+1, counter+1);
   if (!is_complete(board, size)) solve(board, size, row+2, col-1, counter+1);
   if (!is_complete(board, size)) solve(board, size, row-1, col-2, counter+1);
-  if (!is_complete(board, size)) solve(board, size, row-1, col-2, counter+1);
   if (!is_complete(board, size)) solve(board, size, row-2, col-1, counter+1);
+  if (!is_complete(board, size)) solve(board, size, row+1, col-2, counter+1);
 
   if (!is_complete(board, size)) board[row][col] = 0;
 
