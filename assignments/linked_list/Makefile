@@ -8,7 +8,7 @@ main.o: main.cpp Node.h
 	g++ -c main.cpp
 
 tests.o: tests.cpp OList.h
-	g++ -std=c++11 -c test.cpp
+	g++ -std=c++11 -c tests.cpp
 
 OList.o: OList.cpp OList.h Node.h
 	g++ -std=c++11 -c OList.cpp
