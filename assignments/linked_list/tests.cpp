@@ -39,7 +39,6 @@ TEST_CASE("testing contains"){
 
 TEST_CASE("testing get"){
   OList * list = new OList();
-  CHECK(list->get(0)==-1*INT_MAX);
   list->insert(10);
   list->insert(12);
   list->insert(5);
@@ -50,5 +49,21 @@ TEST_CASE("testing get"){
   CHECK(list->get(2)==7);
   CHECK(list->get(3)==10);
   CHECK(list->get(4)==12);
-  CHECK(list->get(100)==-1*INT_MAX);
+  delete list;
+}
+
+TEST_CASE("testing remove"){
+  OList *list = new OList();
+  list->insert(10);
+  list->insert(12);
+  list->insert(5);
+  list->insert(-11);
+  list->insert(7);
+  CHECK(list->toString() == "-11-->5-->7-->10-->12-->nullptr");
+  list->remove(2);
+  CHECK(list->toString() == "-11-->5-->10-->12-->nullptr");
+  list->remove(3);
+  CHECK(list->toString() == "-11-->5-->10-->nullptr");
+  list->remove(0);
+  CHECK(list->toString() == "5-->10-->nullptr");
 }

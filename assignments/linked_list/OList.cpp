@@ -74,10 +74,36 @@ int OList::get(int loc){
   }
   if (walker != nullptr)
     return walker->getData();
+  if (walker == nullptr){
+    throw std::out_of_range("out of range");
+  }
   //returns -2147483647 is there is no data at loc
   return INT_MAX*-1;
 }
 
-//void remove (int loc);
+void OList::remove (int loc){
+  Node *walker = head;
+  Node *trailer = nullptr;
+
+  while (loc > 0 && walker != nullptr){ //always check if the Node is equal to nullptr
+    trailer = walker;
+    walker = walker->getNext();
+    loc = loc - 1;
+  }
+  //check to see if we're trying to insert beyond the end
+
+  if (walker == nullptr){
+    throw std::out_of_range("out of range");
+  }
+
+  if (trailer == nullptr){
+    head = walker->getNext();
+    delete walker;
+  }
+  else{
+    trailer->setNext(walker->getNext());
+    delete walker;
+  }
+}
 
 //void reverse();
