@@ -66,7 +66,17 @@ bool OList::contains(int value){
   return true;
 }
 
-//int get(int loc);
+int OList::get(int loc){
+  Node *walker = head;
+  while (loc > 0 && walker){
+    walker = walker -> getNext();
+    loc--;
+  }
+  if (walker != nullptr)
+    return walker->getData();
+  //returns -2147483647 is there is no data at loc
+  return INT_MAX*-1;
+}
 
 //void remove (int loc);
 

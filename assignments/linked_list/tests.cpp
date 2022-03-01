@@ -36,3 +36,19 @@ TEST_CASE("testing contains"){
   CHECK(list->contains(4));
   delete list;
 }
+
+TEST_CASE("testing get"){
+  OList * list = new OList();
+  CHECK(list->get(0)==-1*INT_MAX);
+  list->insert(10);
+  list->insert(12);
+  list->insert(5);
+  list->insert(4);
+  list->insert(7);
+  CHECK(list->get(0)==4);
+  CHECK(list->get(1)==5);
+  CHECK(list->get(2)==7);
+  CHECK(list->get(3)==10);
+  CHECK(list->get(4)==12);
+  CHECK(list->get(100)==-1*INT_MAX);
+}
