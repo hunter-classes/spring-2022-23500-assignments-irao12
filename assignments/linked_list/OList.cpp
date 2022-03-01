@@ -117,6 +117,7 @@ void OList::reverse(){
       prev = curr;
       curr = next;
     }
+    
     head = prev;
     return;
 }
