@@ -6,17 +6,17 @@
 
 TEST_CASE("Testing constructor, insert, and toString"){
   OList * list = new OList();
-  CHECK(list->toString() == "nullptr");
+  CHECK(list->toString() == "head --> nullptr");
   list->insert(10);
-  CHECK(list->toString() == "10-->nullptr");
+  CHECK(list->toString() == "head --> 10 --> nullptr");
   list->insert(12);
-  CHECK(list->toString() == "10-->12-->nullptr");
+  CHECK(list->toString() == "head --> 10 --> 12 --> nullptr");
   list->insert(5);
-  CHECK(list->toString() == "5-->10-->12-->nullptr");
+  CHECK(list->toString() == "head --> 5 --> 10 --> 12 --> nullptr");
   list->insert(-11);
-  CHECK(list->toString() == "-11-->5-->10-->12-->nullptr");
+  CHECK(list->toString() == "head --> -11 --> 5 --> 10 --> 12 --> nullptr");
   list->insert(7);
-  CHECK(list->toString() == "-11-->5-->7-->10-->12-->nullptr");
+  CHECK(list->toString() == "head --> -11 --> 5 --> 7 --> 10 --> 12 --> nullptr");
   delete list;
 }
 
@@ -59,11 +59,11 @@ TEST_CASE("testing remove"){
   list->insert(5);
   list->insert(-11);
   list->insert(7);
-  CHECK(list->toString() == "-11-->5-->7-->10-->12-->nullptr");
+  CHECK(list->toString() == "head --> -11 --> 5 --> 7 --> 10 --> 12 --> nullptr");
   list->remove(2);
-  CHECK(list->toString() == "-11-->5-->10-->12-->nullptr");
+  CHECK(list->toString() == "head --> -11 --> 5 --> 10 --> 12 --> nullptr");
   list->remove(3);
-  CHECK(list->toString() == "-11-->5-->10-->nullptr");
+  CHECK(list->toString() == "head --> -11 --> 5 --> 10 --> nullptr");
   list->remove(0);
-  CHECK(list->toString() == "5-->10-->nullptr");
+  CHECK(list->toString() == "head --> 5 --> 10 --> nullptr");
 }

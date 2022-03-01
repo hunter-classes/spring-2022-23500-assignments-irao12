@@ -42,11 +42,11 @@ void OList::insert(int value){
 
 
 std::string OList::toString(){
-  std::string result = "";
+  std::string result = "head --> ";
   Node * walker = head;
   while (walker != nullptr){
     result += std::to_string(walker->getData());
-    result += "-->";
+    result += " --> ";
     walker = walker->getNext();
   }
   result+="nullptr";
@@ -106,4 +106,17 @@ void OList::remove (int loc){
   }
 }
 
-//void reverse();
+void OList::reverse(){
+    Node *prev = nullptr;
+    Node *curr = head;
+    Node *next;
+
+    while (curr != nullptr){
+      next = curr->getNext();
+      curr->setNext(prev);
+      prev = curr;
+      curr = next;
+    }
+    head = prev;
+    return;
+}
