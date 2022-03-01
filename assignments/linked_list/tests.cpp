@@ -67,3 +67,24 @@ TEST_CASE("testing remove"){
   list->remove(0);
   CHECK(list->toString() == "head --> 5 --> 10 --> nullptr");
 }
+
+TEST_CASE("testing reverse"){
+  OList *list = new OList();
+  list->reverse();
+  CHECK(list->toString() == "head --> nullptr");
+  list->insert(10);
+  list->insert(12);
+  list->insert(5);
+  list->insert(-11);
+  list->insert(7);
+  list->reverse();
+  CHECK(list->toString() == "head --> 12 --> 10 --> 7 --> 5 --> -11 --> nullptr");
+  list->reverse();
+  CHECK(list->toString() == "head --> -11 --> 5 --> 7 --> 10 --> 12 --> nullptr");
+  delete list;
+  list = new OList();
+  list->insert(4);
+  list->reverse();
+  CHECK(list->toString() == "head --> 4 --> nullptr");
+
+}
