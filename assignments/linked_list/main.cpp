@@ -1,26 +1,45 @@
 #include <iostream>
-#include "List.h"
+#include "OList.h"
 
 int main() {
-  List *l1 = new List();
-  std::cout << l1->toString() << '\n';
-  l1->insert("a");
-  l1->insert("b");
-  l1->insert("c");
-  l1->insert("d");
-  l1->insert("e");
-  l1->insert("f");
-  std::cout << l1->toString() << '\n';
-  std::cout << "\nLocating Node at index 3" << '\n';
-  std::cout << l1->locate(3) << ": " << l1->locate(3)->getData()<<'\n';
-  std::cout << "\nInserting \"z\" at index 2" << '\n';
-  l1->insert("z", 2);
-  std::cout << l1->toString() << '\n';
-  std::cout << "\nRemoving Node at index 4" << '\n';
-  l1->remove(4);
-  std::cout << l1->toString() << '\n';
-  std::cout << "\nTesting destructor" << '\n';
-  delete l1;
+  std::cout << "Creating a new list" << '\n';
+  OList * list = new OList();
+  std::cout << "list: " << list->toString() << '\n';
+  std::cout << "\nInserting 12, 2, 6, 24, -5, and 0" << '\n';
+  list->insert(12);
+  list->insert(2);
+  list->insert(6);
+  list->insert(24);
+  list->insert(-5);
+  list->insert(0);
+  std::cout << "list: " << list->toString() << '\n';
 
+  std::cout << "\nlist->contains(100): ";
+  std::cout << std::boolalpha << (list->contains(100)) << '\n';
+  std::cout << "list->contains(12): ";
+  std::cout << std::boolalpha << (list->contains(12)) << '\n';
+  std::cout << "list->contains(0): ";
+  std::cout << std::boolalpha << (list->contains(12)) << '\n';
+  std::cout << "list->contains(24): ";
+  std::cout << std::boolalpha << (list->contains(24)) << '\n';
+
+  std::cout << "\nlist->get(0): " << list->get(0) << '\n';
+  std::cout << "list->get(2): " << list->get(2) << '\n';
+  std::cout << "list->get(5): " << list->get(5) << '\n';
+
+  std::cout << "\nlist->remove(0):"<< '\n';
+  list->remove(0);
+  std::cout << "list: " << list->toString() << '\n';
+  std::cout << "list->remove(4):"<< '\n';
+  list->remove(4);
+  std::cout << "list: " << list->toString() << '\n';
+
+  std::cout << "\nreversing the list:" << '\n';
+  list->reverse();
+  std::cout << "list: " << list->toString() << '\n';
+  std::cout << "reversing the list again:" << '\n';
+  list->reverse();
+  std::cout << "list: " << list->toString() << '\n';
+  
   return 0;
 }
