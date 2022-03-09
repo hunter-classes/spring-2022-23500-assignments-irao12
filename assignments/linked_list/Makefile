@@ -17,4 +17,4 @@ Node.o: Node.cpp Node.h
 	g++ -std=c++11 -c Node.cpp
 
 clean:
-	rm -rf *.o main
+	rm -rf *.o main tests
