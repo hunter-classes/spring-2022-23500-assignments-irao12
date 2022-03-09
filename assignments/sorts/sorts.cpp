@@ -118,8 +118,17 @@ std::vector<int> msort(std::vector<int> v){
 
 int main()
 {
+  std::cout << "Example 1: " << '\n';
   std::cout << "Before sorting with merge sort: " << '\n';
   std::vector<int> v = {23, 3, 11, 21, 0, 54, 65, -2};
+  print_vector(v);
+  v = msort(v);
+  std::cout << "After sorting with merge sort: " << '\n';
+  print_vector(v);
+
+  std::cout << "\nExample 2: " << '\n';
+  std::cout << "Before sorting with merge sort: " << '\n';
+  v = {64, 32, 70, 2, 53, -223, -2, -50};
   print_vector(v);
   v = msort(v);
   std::cout << "After sorting with merge sort: " << '\n';
