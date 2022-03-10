@@ -29,7 +29,7 @@ int largest(std::vector<int> v){
     return max;
 }
 
-int mode(std::vector<int> v){
+int mode1(std::vector<int> v){
   int max_frequency = -1;
   int mode = v[0];
   for (int i = 0; i < v.size(); i++){
@@ -42,10 +42,34 @@ int mode(std::vector<int> v){
   return mode;
 }
 
+int mode2(std::vector<int> v){
+  int max = largest(v);
+
+  //count the number of times a number appears
+  //index is the number
+  std::vector<int> counter(max+1);
+
+  for (int i = 0; i < v.size(); i++){
+    counter[v[i]]++;
+  }
+
+  //finds the greatest number of times a number appears
+  int most_occured = largest(counter);
+
+  //if a number appears the greatest number of times,
+  //return it as the mode
+  for (int i = 0; i < v.size(); i++){
+    if (counter[v[i]] == most_occured){
+      return v[i];
+    }
+  }
+  return -1;
+}
+
 int main(){
   srand(time(NULL));
-  int items = 25;
-  int max = 5;
+  int items = 40;
+  int max = 10;
 
   std::vector<int> v;
   for (int i = 0; i < items; i++){
@@ -61,6 +85,7 @@ int main(){
   std::cout << "number of 3's: " << count(v, 3 ) << '\n';
   std::cout << "number of 4's: " << count(v, 4 ) << '\n';
 
-  std::cout << "\nmode: " << mode(v) << '\n';
+  std::cout << "\nmode using mode1: " << mode1(v) << '\n';
+  std::cout << "mode using mode2: " << mode2(v) << '\n';
 
 }
