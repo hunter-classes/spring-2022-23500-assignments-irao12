@@ -30,29 +30,16 @@ int largest(std::vector<int> v){
 }
 
 int mode(std::vector<int> v){
-  int max = largest(v);
-
-  //count the number of times a number appears
-  //index is the number
-  std::vector<int> counter(max+1);
-
+  int max_frequency = -1;
+  int mode = v[0];
   for (int i = 0; i < v.size(); i++){
-    counter[v[i]]++;
-  }
-
-  //finds the greatest number of times a number appears
-  int most_occured = largest(counter);
-
-
-  //if a number appears the greatest number of times,
-  //return it as the mode
-
-  for (int i = 0; i < v.size(); i++){
-    if (count(v, v[i]) == most_occured){
-      return v[i];
+    int current_frequency = count(v, v[i]);
+    if (current_frequency > max_frequency){
+      mode = v[i];
+      max_frequency = current_frequency;
     }
   }
-  return -1;
+  return mode;
 }
 
 int main(){
