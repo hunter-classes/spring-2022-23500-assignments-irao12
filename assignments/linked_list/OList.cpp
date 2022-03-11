@@ -1,5 +1,6 @@
 #include <iostream>
 #include "OList.h"
+#include <climits>
 
 OList::OList(){
   head = nullptr;
@@ -117,7 +118,7 @@ void OList::reverse(){
       prev = curr;
       curr = next;
     }
-    
+
     head = prev;
     return;
 }
