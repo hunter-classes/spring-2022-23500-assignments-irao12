@@ -40,6 +40,7 @@ int main() {
   std::cout << "reversing the list again:" << '\n';
   list->reverse();
   std::cout << "list: " << list->toString() << '\n';
-  
+
+  delete list; 
   return 0;
 }
