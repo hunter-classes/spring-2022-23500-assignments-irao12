@@ -68,7 +68,7 @@ int mode2(std::vector<int> v){
 
 int main(){
   srand(time(NULL));
-  int items = 40;
+  int items = 50;
   int max = 10;
 
   std::vector<int> v;
@@ -79,11 +79,10 @@ int main(){
   print_vector(v);
 
   std::cout << "\nlargest number: " << largest(v) << '\n';
-  std::cout << "\nnumber of 0's: " << count(v, 0 ) << '\n';
-  std::cout << "number of 1's: " << count(v, 1 ) << '\n';
-  std::cout << "number of 2's: " << count(v, 2 ) << '\n';
-  std::cout << "number of 3's: " << count(v, 3 ) << '\n';
-  std::cout << "number of 4's: " << count(v, 4 ) << '\n';
+
+  for (int i = 0; i < max; i++){
+    std::cout << "number of "<< i<< "\'s: " << count(v, i) << '\n';
+  }
 
   std::cout << "\nmode using mode1: " << mode1(v) << '\n';
   std::cout << "mode using mode2: " << mode2(v) << '\n';
