@@ -78,7 +78,7 @@ int main(){
 
   print_vector(v);
 
-  std::cout << "\nlargest number: " << largest(v) << '\n';
+  std::cout << "\nlargest number: " << largest(v) << "\n\n";
 
   for (int i = 0; i < max; i++){
     std::cout << "number of "<< i<< "\'s: " << count(v, i) << '\n';
