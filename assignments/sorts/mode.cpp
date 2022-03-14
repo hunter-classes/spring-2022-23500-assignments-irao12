@@ -54,16 +54,18 @@ int mode2(std::vector<int> v){
   }
 
   //finds the greatest number of times a number appears
-  int most_occured = largest(counter);
+  int most_freq = 0;
+  int most_freq_index = 0;
 
   //if a number appears the greatest number of times,
   //return it as the mode
-  for (int i = 0; i < v.size(); i++){
-    if (counter[v[i]] == most_occured){
-      return v[i];
+  for (int i = 0; i < counter.size(); i++){
+    if (counter[i] > most_freq){
+      most_freq_index = i;
+      most_freq = counter[i];
     }
   }
-  return -1;
+  return most_freq_index;
 }
 
 int main(){
