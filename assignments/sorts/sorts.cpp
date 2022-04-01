@@ -118,7 +118,6 @@ std::vector<int> msort(std::vector<int> v){
 std::vector<int> bad_qsort1(std::vector<int> list){
 
   int i,j;
-
   // base case
   if (list.size() <= 1){
     return list;
@@ -297,7 +296,28 @@ void good_qsort2(std::vector<int> *list, int L, int H){
   good_qsort2(list, i, H);
 }
 
+void test(std::string sort, std::vector<int> *list){
+  struct timeval tp;
+  gettimeofday(&tp, NULL);
+  long start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
 
+  if (sort == "msort")
+    msort(*list);
+  else if (sort == "bad_qsort2")
+    bad_qsort2(list, 0 , (*list).size()-1);
+  else if (sort == "good_qsort2")
+    good_qsort2(list, 0 , (*list).size()-1);
+  else if (sort == "good_qsort1")
+    good_qsort1(*list);
+  else if (sort == "bad_qsort1")
+    bad_qsort1(*list);
+
+  gettimeofday(&tp,NULL);
+  long current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+
+  long elapsed = current_time - start_time;
+  std::cout << "\tTime: " << elapsed << '\n';
+}
 
 int main()
 {
@@ -320,7 +340,7 @@ int main()
   */
   //Generating a random vector of ints
   int max = 1000;
-  int size = 10000;
+  int size = 40000;
   std::vector<int> list1, list2, list3, list4;
 
   srand(time(NULL));
@@ -332,55 +352,49 @@ int main()
     list4.push_back(i);
   }
 
+  std::cout << "Testing on randomized vectors" << '\n';
 
-  struct timeval tp;
+  std::cout << "Starting mergesort on a vector of size " << size << '\n';
+
+  test("msort", &list1);
+
+  std::cout << "Starting bad original quicksort on a vector of size " << size << '\n';
+
+  test("bad_qsort1", &list1);
+
+  std::cout << "Starting good original quicksort on a vector of size " << size << '\n';
+
+  test("good_qsort1", &list1);
+
   std::cout << "Starting bad in-place quicksort on a vector of size " << size << '\n';
 
-  gettimeofday(&tp, NULL);
-  long start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+  test("bad_qsort2", &list1);
 
-  bad_qsort2(&list1, 0 , list1.size()-1);
-  gettimeofday(&tp,NULL);
-  long current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+  std::cout << "Starting good in-place quicksort on a vector of size " << size << '\n';
 
-  long elapsed = current_time - start_time;
-  std::cout << "Time: " << elapsed << '\n';
+  test("good_qsort2", &list2);
 
-  std::cout << "\nStarting good in-place quicksort on a vector of size " << size << '\n';
+  std::cout << "\nTesting on sorted vectors" << '\n';
 
-  gettimeofday(&tp, NULL);
-  start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+  std::cout << "Starting mergesort on a sorted vector of size " << size << '\n';
 
-  good_qsort2(&list2, 0 , list2.size()-1);
-  gettimeofday(&tp,NULL);
-  current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+  test("msort", &list3);
 
-  elapsed = current_time - start_time;
-  std::cout << "Time: " << elapsed << '\n';
+  std::cout << "Starting bad original quicksort on a vector of size " << size << '\n';
+  print_vector(list3);
+  test("bad_qsort1", &list3);
 
-  std::cout << "\nStarting bad in-place quicksort on a sorted vector of size " << size << '\n';
+  std::cout << "Starting good original quicksort on a vector of size " << size << '\n';
 
-  gettimeofday(&tp, NULL);
-  start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+  test("good_qsort1", &list3);
 
-  bad_qsort2(&list3, 0 , list2.size()-1);
-  gettimeofday(&tp,NULL);
-  current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+  std::cout << "Starting bad in-place quicksort on a sorted vector of size " << size << '\n';
 
-  elapsed = current_time - start_time;
-  std::cout << "Time: " << elapsed << '\n';
+  test("bad_qsort2" , &list3);
 
-  std::cout << "\nStarting good in-place quicksort on a sorted vector of size " << size << '\n';
+  std::cout << "Starting good in-place quicksort on a sorted vector of size " << size << '\n';
 
-  gettimeofday(&tp, NULL);
-  start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
-
-  good_qsort2(&list4, 0 , list2.size()-1);
-  gettimeofday(&tp,NULL);
-  current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
-
-  elapsed = current_time - start_time;
-  std::cout << "Time: " << elapsed << '\n';
+  test("good_qsort2", &list4);
 
 
 
