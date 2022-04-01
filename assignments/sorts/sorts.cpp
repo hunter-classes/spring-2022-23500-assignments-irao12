@@ -221,14 +221,15 @@ void swap(std::vector<int> *list, int a, int b){
 }
 
 void bad_qsort2(std::vector<int> *list, int L, int H){
-  if (H == L) return;
+  if (L>=H) return;
+
 
   int pivot = (*list)[L];
   int i = L;
   int j = H;
 
   //stop when i and j are both on pivot
-  while (i < j){
+  while (i <= j){
     //goes from L to the pivot until an element is >= the pivot
     while ((*list)[i] < pivot){
       i++;
@@ -237,9 +238,8 @@ void bad_qsort2(std::vector<int> *list, int L, int H){
     while ((*list)[j] > pivot){
       j--;
     }
-    std::cout << "L: " << L << " H: "<< H<< " i: " << i << " j: " << j <<'\n';
-    swap(list, i, j);
     if (i <= j){
+    swap(list, i, j);
       i++;
       j--;
     }
@@ -247,8 +247,57 @@ void bad_qsort2(std::vector<int> *list, int L, int H){
 
   bad_qsort2(list, L, j);
   bad_qsort2(list, i, H);
-
 }
+
+void good_qsort2(std::vector<int> *list, int L, int H){
+  if (L>=H) return;
+
+  int i = L;
+  int j = H;
+
+  int pivot;
+  int first = (*list)[L];
+  int last = (*list)[H];
+  int mid = (*list)[(H-L)/2+L];
+  if (first>mid){
+    if (first<last)
+      pivot = first;
+    else if (mid>last)
+      pivot = mid;
+    else
+      pivot = last;
+  }
+  else{
+    if (last > mid)
+      pivot = mid;
+    else if (first > last)
+      pivot = first;
+    else
+      pivot = last;
+  }
+
+  //stop when i and j are both on pivot
+  while (i <= j){
+    //goes from L to the pivot until an element is >= the pivot
+    while ((*list)[i] < pivot){
+      i++;
+    }
+    //goes from the end to pivot until an element is <= the pivot
+    while ((*list)[j] > pivot){
+      j--;
+    }
+    if (i <= j){
+    swap(list, i, j);
+      i++;
+      j--;
+    }
+  }
+
+  good_qsort2(list, L, j);
+  good_qsort2(list, i, H);
+}
+
+
 
 int main()
 {
@@ -271,32 +320,70 @@ int main()
   */
   //Generating a random vector of ints
   int max = 1000;
-  int size = 99;
-  std::vector<int> list1, list2, list3;
+  int size = 10000;
+  std::vector<int> list1, list2, list3, list4;
 
   srand(time(NULL));
   for (int i = 0 ; i < size; i++){
-    int random = rand() % 1000;
+    int random = rand() % max;
     list1.push_back(random);
     list2.push_back(random);
     list3.push_back(i);
+    list4.push_back(i);
   }
 
 
   struct timeval tp;
-  gettimeofday(&tp,NULL);
-
   std::cout << "Starting bad in-place quicksort on a vector of size " << size << '\n';
 
   gettimeofday(&tp, NULL);
   long start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
 
   bad_qsort2(&list1, 0 , list1.size()-1);
-  print_vector(list1);
   gettimeofday(&tp,NULL);
   long current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+
   long elapsed = current_time - start_time;
   std::cout << "Time: " << elapsed << '\n';
+
+  std::cout << "\nStarting good in-place quicksort on a vector of size " << size << '\n';
+
+  gettimeofday(&tp, NULL);
+  start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+
+  good_qsort2(&list2, 0 , list2.size()-1);
+  gettimeofday(&tp,NULL);
+  current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+
+  elapsed = current_time - start_time;
+  std::cout << "Time: " << elapsed << '\n';
+
+  std::cout << "\nStarting bad in-place quicksort on a sorted vector of size " << size << '\n';
+
+  gettimeofday(&tp, NULL);
+  start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+
+  bad_qsort2(&list3, 0 , list2.size()-1);
+  gettimeofday(&tp,NULL);
+  current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+
+  elapsed = current_time - start_time;
+  std::cout << "Time: " << elapsed << '\n';
+
+  std::cout << "\nStarting good in-place quicksort on a sorted vector of size " << size << '\n';
+
+  gettimeofday(&tp, NULL);
+  start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+
+  good_qsort2(&list4, 0 , list2.size()-1);
+  gettimeofday(&tp,NULL);
+  current_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
+
+  elapsed = current_time - start_time;
+  std::cout << "Time: " << elapsed << '\n';
+
+
+
 
 
   return 0;
