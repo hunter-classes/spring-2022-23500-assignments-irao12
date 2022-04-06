@@ -6,7 +6,7 @@
 
 ### On sorted vectors
 * The in-place quick sort with the bad pivot took a significant amount of time more than the in-place quick sort with a good pivot
- * ex: bad in-place had a time of 1078 vs. good in-place had a time of 1 (list of size 25000)
+  * ex: bad in-place had a time of 1078 vs. good in-place had a time of 1 (list of size 25000)
 * the original quick sort with the bad pivot would allocate too much memory when the size of the list became too large. The program is terminated as a result.
 
 ### General Notes
