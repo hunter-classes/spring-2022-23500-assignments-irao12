@@ -342,7 +342,7 @@ int main()
   */
   //Generating a random vector of ints
   int max = 1000;
-  int size = 15000;
+  int size = 50000;
   std::vector<int> list1, list2, list3, list4;
 
   srand(time(NULL));
@@ -360,17 +360,17 @@ int main()
 
   test("msort", &list1);
 
-  std::cout << "Starting bad original quicksort on a vector of size " << size << '\n';
+  /*std::cout << "Starting bad original quicksort on a vector of size " << size << '\n';
 
-  test("bad_qsort1", &list1);
+  test("bad_qsort1", &list1);*/
 
   std::cout << "Starting good original quicksort on a vector of size " << size << '\n';
 
   test("good_qsort1", &list1);
 
-  std::cout << "Starting bad in-place quicksort on a vector of size " << size << '\n';
+  /*std::cout << "Starting bad in-place quicksort on a vector of size " << size << '\n';
 
-  test("bad_qsort2", &list1);
+  test("bad_qsort2", &list1);*/
 
   std::cout << "Starting good in-place quicksort on a vector of size " << size << '\n';
 
@@ -382,26 +382,22 @@ int main()
 
   test("msort", &list3);
 
-  std::cout << "Starting bad original quicksort on a sorted vector of size " << size << '\n';
+  /*std::cout << "Starting bad original quicksort on a sorted vector of size " << size << '\n';
 
-  test("bad_qsort1", &list3);
+  test("bad_qsort1", &list3);*/
 
 
   std::cout << "Starting good original quicksort on a sorted vector of size " << size << '\n';
 
   test("good_qsort1", &list3);
 
-  std::cout << "Starting bad in-place quicksort on a sorted vector of size " << size << '\n';
+/*  std::cout << "Starting bad in-place quicksort on a sorted vector of size " << size << '\n';
 
-  test("bad_qsort2" , &list3);
+  test("bad_qsort2" , &list3);*/
 
   std::cout << "Starting good in-place quicksort on a sorted vector of size " << size << '\n';
 
   test("good_qsort2", &list4);
-
-
-
-
 
   return 0;
 }
