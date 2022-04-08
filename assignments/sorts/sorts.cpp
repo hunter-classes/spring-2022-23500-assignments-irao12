@@ -172,7 +172,6 @@ std::vector<int> good_qsort1(std::vector<int> list){
   }
 
   // select a pivot value.
-  // for now, just pick list[0]
   int pivot;
   int first = list[0];
   int last = list[list.size()-1];
