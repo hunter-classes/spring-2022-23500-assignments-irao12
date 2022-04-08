@@ -177,19 +177,42 @@ std::vector<int> good_qsort1(std::vector<int> list){
   int first = list[0];
   int last = list[list.size()-1];
   int mid = list[list.size()/2];
-  if ((first>=mid && mid>=last) || (last>=mid && mid>=first)) pivot = mid;
-  if ((mid >= first && first >= last) || (last >= first && first >= mid)) pivot = first;
-  if ((last >= first && last <= mid) || (last >= mid && last <= first)) pivot = last;
+  if (first>mid){
+    if (first<last)
+      pivot = 0;
+    else if (mid>last)
+      pivot = list.size()/2;
+    else
+      pivot = list.size()-1;
+  }
+  else{
+    if (last > mid)
+      pivot = list.size()/2;
+    else if (first > last)
+      pivot = 0;
+    else
+      pivot = list.size()-1;
+  }
 
   // make 2 new vectors
   std::vector<int> lower,higher;
 
   // copy all the values < pivot value to lower
   // copy all the values >= pivot value to higher;
-  for (i=1; i < list.size(); i++){
-    if (list[i] < pivot){
+  for (i=0; i < pivot; i++){
+    if (list[i] < list[pivot]){
       lower.push_back(list[i]);
-    } else {
+    }
+    else {
+      higher.push_back(list[i]);
+    }
+  }
+
+  for (i=pivot+1; i < list.size(); i++){
+    if (list[i] < list[pivot]){
+      lower.push_back(list[i]);
+    }
+    else {
       higher.push_back(list[i]);
     }
   }
@@ -197,19 +220,20 @@ std::vector<int> good_qsort1(std::vector<int> list){
   lower = good_qsort1(lower);
   higher = good_qsort1(higher);
 
+  int pivot_value = list[pivot];
+
   // copy everything back into list
-  for (i=0 ; i < lower.size(); i++){
+  for (i=0; i < lower.size(); i++){
     list[i]=lower[i];
   }
 
-  list[i] = pivot;
+  list[i] = pivot_value;
   i++;
 
   for (j=0;j<higher.size();j++){
     list[i] = higher[j];
     i++;
   }
-
   // return the sorted list
   return list;
 }
@@ -303,14 +327,16 @@ void test(std::string sort, std::vector<int> *list){
   gettimeofday(&tp, NULL);
   long start_time = tp.tv_sec *1000 + tp.tv_usec / 1000;
 
+  std::vector<int> v;
   if (sort == "msort")
     msort(*list);
   else if (sort == "bad_qsort2")
     bad_qsort2(list, 0 , (*list).size()-1);
   else if (sort == "good_qsort2")
     good_qsort2(list, 0 , (*list).size()-1);
-  else if (sort == "good_qsort1")
+  else if (sort == "good_qsort1"){
     good_qsort1(*list);
+  }
   else if (sort == "bad_qsort1")
     bad_qsort1(*list);
 
