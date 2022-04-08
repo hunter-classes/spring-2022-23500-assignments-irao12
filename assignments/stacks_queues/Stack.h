@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Node.h"
 
 #define ERR_STACK_EMPTY 1
