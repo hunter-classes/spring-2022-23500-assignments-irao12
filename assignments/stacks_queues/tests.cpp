@@ -2,7 +2,9 @@
 #include "doctest.h"
 #include <iostream>
 #include "Stack.h"
+#include "Queue.h"
 
+//Testing the Stack class
 Stack * s = new Stack();
 
 TEST_CASE("Testing the constructor, push, and top"){
@@ -48,4 +50,22 @@ TEST_CASE("Testing is_empty()"){
   CHECK(s->is_empty());
 
   delete s;
+}
+
+//Testing the Queue class
+Queue * q = new Queue();
+
+TEST_CASE("Testing constructor, enqueue, dequeue, and front"){
+  q->enqueue(0);
+  CHECK(q->front() == 0);
+  q->enqueue(1);
+  CHECK(q->front() == 0);
+  int val = q->dequeue();
+  CHECK(val == 0);
+  CHECK(q->front() == 1);
+  q->enqueue(2);
+  CHECK(q->front() == 1);
+  q->enqueue(3);
+  CHECK(q->front() == 1);
+  q->enqueue(4);
 }
