@@ -1,10 +1,14 @@
 #pragma once
 #include "Node.h"
 
+#define QUEUE_ERR_EMPTY 1
+#define QUEUE_ERR_FULL 2
+#define QUEUE_ERR_OTHER 4
+
 class Queue{
 private:
-  Node * head = nullptr;
-  Node * tail = nullptr;
+  int head;
+  int tail;
   int * queue;
 public:
   Queue();
