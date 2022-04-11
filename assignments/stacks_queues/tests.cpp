@@ -69,3 +69,21 @@ TEST_CASE("Testing constructor, enqueue, dequeue, and front"){
   CHECK(q->front() == 1);
   q->enqueue(4);
 }
+
+Queue * q2 = new Queue();
+
+TEST_CASE("Testing is is_full"){
+  CHECK(q->is_full()); //should be true since we filled the queue with 0 to 4
+  q->dequeue(); // remove one element
+  CHECK(!q->is_full()); //should not be full after dequeueing
+  q->enqueue(5); //enqueue again to test if is_full works with a different head
+  CHECK(q->is_full()); //should test true since we enqueued again
+
+  CHECK(!q2->is_full()); //empty queue, should not be full
+  q2->enqueue(0);
+  q2->enqueue(1);
+  q2->enqueue(2);
+  q2->enqueue(3);
+  q2->enqueue(4); // queue is now full
+  CHECK(q2->is_full()); //tests if queue is full when head is 0, should be full
+}
