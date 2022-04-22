@@ -1,7 +1,10 @@
 #include <iostream>
 #include "Node.h"
+#include "BSTree.h"
 
 int main(){
+  //work from video 2
+  /*
   std::cout << "establishing the root" << '\n';
   Node * n = new Node(10);
 
@@ -10,7 +13,7 @@ int main(){
   Node * n2 = new Node (20);
   n->setLeft(n2);
   std::cout << n->getLeft()->getData() << '\n';
-  
+
   n2 = new Node (30);
   n->getLeft()->setLeft(n2);
   std::cout << n->getLeft()->getLeft()->getData() << '\n';
@@ -31,4 +34,10 @@ int main(){
   n2 = new Node (70);
   n->getRight()->setRight(n2);
   std::cout << n->getRight()->getRight()->getData() << '\n';
+  */
+
+  BSTree * t = new BSTree();
+  t->setup();
+  std::cout << t->get_debug_string() << '\n';
+
 }
