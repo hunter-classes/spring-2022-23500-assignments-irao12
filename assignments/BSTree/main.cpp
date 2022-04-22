@@ -38,6 +38,7 @@ int main(){
 
   BSTree * t = new BSTree();
   t->setup();
+  std::cout << "Testing get_debug_string()" << '\n';
   std::cout << t->get_debug_string() << '\n';
 
 }
