@@ -8,6 +8,13 @@
 Stack * s = new Stack();
 
 TEST_CASE("Testing the constructor, push, and top"){
+  try{
+    s->top();
+  }
+  catch (int e){
+    CHECK(e == 1); //ERR_STACK_EMPTY
+  }
+
   s->push(5);
   CHECK(s->top() == 5);
   s->push(10);
@@ -19,7 +26,6 @@ TEST_CASE("Testing the constructor, push, and top"){
   CHECK(s->top() == 20);
   s->push(-23);
   CHECK(s->top() == -23);
-
 }
 
 TEST_CASE("Testing pop()"){
@@ -33,10 +39,17 @@ TEST_CASE("Testing pop()"){
   CHECK(s->top() == 10);
   s->pop();
   CHECK(s->top() == 5);
+  s->pop();
+
+  try{
+    s->pop();
+  }
+  catch (int e){
+    CHECK(e == 1); //ERR_STACK_EMPTY
+  }
 }
 
 TEST_CASE("Testing is_empty()"){
-  s->pop();
   CHECK(s->is_empty());
   s->push(10);
   CHECK(!s->is_empty());
@@ -56,6 +69,13 @@ TEST_CASE("Testing is_empty()"){
 Queue * q = new Queue();
 
 TEST_CASE("Testing constructor, enqueue, dequeue, and front"){
+  try {
+    q->front();
+  }
+  catch (int e){
+    CHECK(e == 1); //QUEUE_ERR_EMPTY
+  }
+
   q->enqueue(0);
   CHECK(q->front() == 0);
   q->enqueue(1);
@@ -68,6 +88,14 @@ TEST_CASE("Testing constructor, enqueue, dequeue, and front"){
   q->enqueue(3);
   CHECK(q->front() == 1);
   q->enqueue(4);
+
+  try {
+    q->enqueue(5);
+  }
+  catch (int e){
+    CHECK(e == 2); //QUEUE_ERR_FULL
+  }
+
 }
 
 Queue * q2 = new Queue();
@@ -79,6 +107,13 @@ TEST_CASE("Testing is is_full"){
   q->enqueue(5); //enqueue again to test if is_full works with a different head
   CHECK(q->is_full()); //should test true since we enqueued again
 
+  try {
+    q2->dequeue();
+  }
+  catch (int e){
+    CHECK(e == 1); //QUEUE_ERR_EMPTY
+  }
+
   CHECK(!q2->is_full()); //empty queue, should not be full
   q2->enqueue(0);
   q2->enqueue(1);
@@ -86,4 +121,5 @@ TEST_CASE("Testing is is_full"){
   q2->enqueue(3);
   q2->enqueue(4); // queue is now full
   CHECK(q2->is_full()); //tests if queue is full when head is 0, should be full
+  delete q;
 }

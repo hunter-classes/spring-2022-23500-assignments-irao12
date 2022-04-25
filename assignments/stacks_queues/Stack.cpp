@@ -5,7 +5,12 @@ Stack::Stack(){
 }
 
 Stack::~Stack(){
-  delete stack;
+  Node * curr = stack;
+  while (stack){
+    Node * temp = stack;
+    stack = stack->getNext();
+    delete temp;
+  }
 }
 
 void Stack::push(int val){

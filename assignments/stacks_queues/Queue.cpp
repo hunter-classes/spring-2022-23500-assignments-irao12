@@ -8,6 +8,10 @@ Queue::Queue(){
   queue = new int[5];
 }
 
+Queue::~Queue(){
+  delete [] queue;
+}
+
 
 void Queue::enqueue(int val){ // add a value to the queue
   if (head == tail){

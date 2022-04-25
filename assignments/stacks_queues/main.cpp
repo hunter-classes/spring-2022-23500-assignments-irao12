@@ -32,6 +32,8 @@ int main(){
     std::cout << "\tAttempted to look at the top of an empty stack" << '\n';
   }
 
+  delete s;
+
   std::cout << "\nCreating a new queue" << '\n';
   Queue * q = new Queue();
 
@@ -77,6 +79,8 @@ int main(){
   catch (int e) {
     std::cout << "\n\tAttempted to look at the front of an empty queue" << '\n';
   }
+
+  delete q;
 
   return 0;
 }

@@ -12,6 +12,7 @@ private:
   int * queue;
 public:
   Queue();
+  ~Queue();
   void enqueue(int val); // add a value to the queue
   int dequeue(); //the value at the front is removed and returned
   int front(); //returns the value at the front of the queue
