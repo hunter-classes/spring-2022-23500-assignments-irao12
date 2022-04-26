@@ -24,7 +24,7 @@ int main(){
     std::cout << "\tAttempted to pop an empty stack" << '\n';
   }
 
-  std::cout << "the int at the top of the stack: " << '\n';
+  std::cout << "The int at the top of the stack: " << '\n';
   try{
     s->pop();
   }
@@ -46,7 +46,7 @@ int main(){
   q->enqueue(3);
   q->enqueue(4);
   q->enqueue(5);
-
+  std::cout << "The int at the front of the queue: " << q->front() << '\n';
   std::cout << "Enqueueing a 6 to the queue" << '\n';
   try{
     q->enqueue(6);
