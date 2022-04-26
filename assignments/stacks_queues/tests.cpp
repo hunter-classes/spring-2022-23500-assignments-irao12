@@ -88,9 +88,10 @@ TEST_CASE("Testing constructor, enqueue, dequeue, and front"){
   q->enqueue(3);
   CHECK(q->front() == 1);
   q->enqueue(4);
-
+  q->enqueue(5);
+  
   try {
-    q->enqueue(5);
+    q->enqueue(6);
   }
   catch (int e){
     CHECK(e == 2); //QUEUE_ERR_FULL
