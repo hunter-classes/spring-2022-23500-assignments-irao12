@@ -10,6 +10,7 @@ private:
   int head;
   int tail;
   int * queue;
+  int count;
 public:
   Queue();
   ~Queue();
