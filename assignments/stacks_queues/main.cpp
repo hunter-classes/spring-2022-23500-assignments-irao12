@@ -68,7 +68,7 @@ int main(){
     q->dequeue();
   }
   catch (int e){
-    std::cout << "\tAttempted to dequeue a full queue" << '\n';
+    std::cout << "\tAttempted to dequeue an empty queue" << '\n';
   }
   std::cout << "The queue is full: " << std::boolalpha << q->is_full() << '\n';
 
