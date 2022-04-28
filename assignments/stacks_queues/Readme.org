@@ -1,0 +1,17 @@
+* Project 5 Stacks and Queues
+
+- To Compile and run:
+
+#+begin_src bash
+  make clean
+  make
+  ./main
+#+end_src
+
+- To run tests:
+
+#+begin_src bash
+  make tests
+  ./tests
+
+#+end_src
