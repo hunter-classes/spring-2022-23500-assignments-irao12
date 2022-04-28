@@ -35,6 +35,7 @@ TEST_CASE("Testing pop()"){
   s->pop();
   CHECK(s->top() == 15);
   s->pop();
+  CHECK(s->top() == 12);
   s->pop();
   CHECK(s->top() == 10);
   s->pop();
