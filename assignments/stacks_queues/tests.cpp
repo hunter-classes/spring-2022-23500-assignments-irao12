@@ -89,7 +89,7 @@ TEST_CASE("Testing constructor, enqueue, dequeue, and front"){
   CHECK(q->front() == 1);
   q->enqueue(4);
   q->enqueue(5);
-  
+
   try {
     q->enqueue(6);
   }
@@ -101,7 +101,7 @@ TEST_CASE("Testing constructor, enqueue, dequeue, and front"){
 
 Queue * q2 = new Queue();
 
-TEST_CASE("Testing is is_full"){
+TEST_CASE("Testing is_full()"){
   CHECK(q->is_full()); //should be true since we filled the queue with 0 to 4
   q->dequeue(); // remove one element
   CHECK(!q->is_full()); //should not be full after dequeueing
