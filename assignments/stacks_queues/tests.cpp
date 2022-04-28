@@ -30,17 +30,17 @@ TEST_CASE("Testing the constructor, push, and top"){
 
 TEST_CASE("Testing pop()"){
   CHECK(s->top() == -23);
-  s->pop();
+  CHECK(s->pop() == -23);
   CHECK(s->top() == 20);
-  s->pop();
+  CHECK(s->pop() == 20);
   CHECK(s->top() == 15);
-  s->pop();
+  CHECK(s->pop() == 15);
   CHECK(s->top() == 12);
-  s->pop();
+  CHECK(s->pop() == 12);
   CHECK(s->top() == 10);
-  s->pop();
+  CHECK(s->pop() == 10);
   CHECK(s->top() == 5);
-  s->pop();
+  CHECK(s->pop() == 5);
 
   try{
     s->pop();
