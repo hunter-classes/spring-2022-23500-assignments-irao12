@@ -6,7 +6,6 @@ Queue::Queue(){
   head = 0;
   tail = 0;
   queue = new int[5];
-  count = 0;
 }
 
 Queue::~Queue(){
@@ -18,7 +17,6 @@ void Queue::enqueue(int val){ // add a value to the queue
   if (this->is_empty()){
     queue[head%5] = val;
     tail++;
-    count++;
   }
 
   else if (this->is_full()){
@@ -28,7 +26,6 @@ void Queue::enqueue(int val){ // add a value to the queue
   else{
     queue[tail%5] = val;
     tail++;
-    count++;
   }
   return;
 }
@@ -41,7 +38,6 @@ int Queue::dequeue(){ //the value at the front is removed and returned
 
   int result = queue[head%5];
   head++;
-  count--;
 
   return result;
 
@@ -58,11 +54,11 @@ int Queue::front(){ //returns the value at the front of the queue
 }
 
 bool Queue::is_empty(){ //returns whether the queue is empty
-  if (head%5 == tail%5 && count == 0) return true;
+  if (head == tail) return true;
   return false;
 }
 
 bool Queue::is_full(){ //returns whether the queue is full
-  if (tail % 5 == head % 5 && count == 5) return true;
+  if (tail - head >= 5) return true; // the distance should at most be 4 to not be full
   return false;
 }
