@@ -45,6 +45,26 @@ int main()
     std::cout << v << " not found\n";
   }
 
+  std::cout << "\nDeleting values in the tree" << '\n';
+  std::cout << "Deleting 10" << '\n';
+  t->delete_val(10);
+  std::cout << t->get_debug_string() << '\n';
+  std::cout << "Deleting 15" << '\n';
+  t->delete_val(15);
+  std::cout << t->get_debug_string() << '\n';
+  std::cout << "Deleting 8" << '\n';
+  t->delete_val(8);
+  std::cout << t->get_debug_string() << '\n';
+  std::cout << "Deleting 5" << '\n';
+  t->delete_val(5);
+  std::cout << t->get_debug_string() << '\n';
+  std::cout << "Deleting 100" << '\n';
+  try{
+    t->delete_val(100);
+  } catch (int e){
+    std::cout << "\tTried to delete a value that was not in the tree" << '\n';
+  }
+  std::cout << t->get_debug_string() << '\n';
 
   std::cout << "\nCreating a binary search tree of random values using rinsert" << '\n';
 
@@ -57,7 +77,6 @@ int main()
   }
 
   std::cout <<  "Tree: " << random_t->get_debug_string() << "\n";
-
 
 
 

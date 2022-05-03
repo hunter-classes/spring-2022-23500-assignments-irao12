@@ -28,9 +28,11 @@ public:
   void rinsert(int value);
   void rinsert(int value, Node *p);
 
+  void delete_val(int value);
+
+  // void rdelete(int value);
+  // void rdelete(int value, Node * parent, Node * curr);
   // int treesum();
   // int treesum(Node *n);
-  // int searchr(int value);
-  // int searchr(int value, Node *n);
 
 };

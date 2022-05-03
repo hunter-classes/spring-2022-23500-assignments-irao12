@@ -232,3 +232,159 @@ void BSTree::rinsert(int value, Node *p){
 void BSTree::rinsert(int value){
   rinsert(value, root);
 }
+
+void BSTree::delete_val(int value){
+  Node * curr = root;
+  // parent keeps track of the parent node of curr
+  Node * parent = nullptr;
+  bool found = false;
+
+  while (curr){
+    int x = curr->getData();
+    // if value is less than curr's data, move to the left subtree
+    if (value < x){
+      parent = curr;
+      curr = curr->getLeft();
+    }
+    // if value is less than curr's data, move to the left subtree
+    else if (value > x){
+      parent = curr;
+      curr = curr->getRight();
+    }
+    // if value is equal to curr's data, delete curr
+    else{
+      Node * left = curr->getLeft();
+      Node * right = curr->getRight();
+
+      //if curr has at most one child
+      if ( (!left && right) || (left && !right) || (!left && !right)){
+        if (!left){
+          if (curr == root){
+            root = right;
+          }
+          else if (x > parent->getData()){
+            parent->setRight(right);
+          }
+          else if (x < parent->getData()){
+            parent->setLeft(right);
+          }
+        }
+        else{
+          if (curr == root){
+            root = left;
+          }
+          else if (x > parent->getData()){
+            parent->setRight(left);
+          }
+          else if (x < parent->getData()){
+            parent->setLeft(left);
+          }
+        }
+        delete curr;
+      }
+      // curr has two children nodes
+      else{
+        Node * temp_parent, * temp;
+        temp_parent = curr;
+        temp = curr->getLeft();
+        if (!temp->getRight()){
+          curr->setData(temp->getData());
+          curr->setLeft(temp->getLeft());
+        }
+        else{
+          while (temp->getRight()){
+            temp_parent = temp;
+            temp = temp->getRight();
+          }
+          curr->setData(temp->getData());
+          delete temp;
+          temp_parent -> setRight(nullptr);
+        }
+      }
+      found = true;
+      break;
+    }
+  }
+  if (!found) throw 1;
+}
+
+/* void BSTree::rdelete(int value, Node * parent, Node * curr){
+  // will reach nullptr if the value is
+  // not in the tree, throw exception
+  if (curr == nullptr){
+    throw 1;
+  }
+  // if the value is found, delete the node
+  if (value == curr->getData()){
+    Node * left = curr->getLeft();
+    Node * right = curr->getRight();
+    // if the node has at most one child
+    if ((left && !right) || (!left && right) || (!left && !right)){
+      // if the child is the right node
+      if (!left){
+        // if curr is the root, just set the root to right
+        if (curr == root){
+          delete curr;
+          root = right;
+        }
+        // if curr was the parent's left node
+        else if (curr->getData() < parent->getData()){
+          parent->setLeft(right);
+          delete curr;
+        }
+        // if curr was the parent's right node
+        else {
+          parent->setRight(right);
+          delete curr;
+        }
+      }
+      // if the child is the left node
+      else {
+        // if curr is the root, just set the root to left
+        if (curr == root){
+          delete curr;
+          root = left;
+        }
+        // if curr was the parent's left node
+        else if (curr->getData() < parent->getData()){
+          parent->setLeft(left);
+          delete curr;
+        }
+        // if curr was the parent's right node
+        else {
+          parent->setRight(left);
+          delete left;
+        }
+      }
+    }
+    //if the node has two chidlren
+    else{
+      Node * temp = curr->getLeft();
+      Node * temp_parent = curr;
+      //find the largest element in the left subtree
+      while (temp->getRight() != nullptr){
+        temp_parent = temp;
+        temp = temp->getRight();
+      }
+      //change curr's data to the largest value in the left subtree
+      curr->setData(temp->getData());
+      // delete the node that holds the copied value
+      rdelete(temp->getData(), temp_parent, temp);
+    }
+  }
+  // if value is less than the current node's data
+  // delete the value in the left subtree
+  else if (value < curr->getData()){
+    rdelete(value, curr, curr->getLeft());
+  }
+  // if value is greater than the current node's data
+  // delete the value in the right subtree
+  else{
+    rdelete(value, curr, curr->getRight());
+  }
+}
+
+void BSTree::rdelete(int value){
+    rdelete(value, nullptr, root);
+}
+*/
