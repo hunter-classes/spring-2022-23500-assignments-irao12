@@ -69,46 +69,46 @@ TEST_CASE("Testing rinsert"){
   CHECK(t2.get_debug_string() == ", -12, , 0, , 2, , 10, , 25, ");
 }
 
-TEST_CASE("Testing rdelete"){
+TEST_CASE("Testing remove"){
   BSTree t3;
   try{
-    t3.delete_val(2);
+    t3.remove(2);
   } catch (int e){
     CHECK(e == 1);
   }
   t3.setup();
   CHECK(t3.get_debug_string() == ", 3, , 5, , 8, , 10, , 15, , 20, , 30, ");
-  t3.delete_val(10);
+  t3.remove(10);
   CHECK(t3.get_debug_string() == ", 3, , 5, , 8, , 15, , 20, , 30, ");
 
-  t3.delete_val(30);
+  t3.remove(30);
   CHECK(t3.get_debug_string() == ", 3, , 5, , 8, , 15, , 20, ");
-  t3.delete_val(5);
+  t3.remove(5);
   CHECK(t3.get_debug_string() == ", 3, , 8, , 15, , 20, ");
 
   try{
-    t3.delete_val(100);
+    t3.remove(100);
   } catch (int e){
     CHECK(e == 1);
   }
   try{
-    t3.delete_val(10);
+    t3.remove(10);
   } catch (int e){
     CHECK(e == 1);
   }
   try{
-    t3.delete_val(5);
+    t3.remove(5);
   } catch (int e){
     CHECK(e == 1);
   }
 
-  t3.delete_val(15);
+  t3.remove(15);
   CHECK(t3.get_debug_string() == ", 3, , 8, , 20, ");
-  t3.delete_val(3);
+  t3.remove(3);
   CHECK(t3.get_debug_string() == ", 8, , 20, ");
-  t3.delete_val(8);
+  t3.remove(8);
   CHECK(t3.get_debug_string() == ", 20, ");
-  t3.delete_val(20);
+  t3.remove(20);
   CHECK(t3.get_debug_string() == "");
 
 }
@@ -132,7 +132,7 @@ TEST_CASE("Testing get_leaf_count()"){
   t4->rinsert(6);
   t4->rinsert(9);
   CHECK(t4->get_leaf_count() == 6);
-  t4->delete_val(3);
+  t4->remove(3);
   CHECK(t4->get_leaf_count() == 5);
   delete t4;
 }
@@ -142,15 +142,15 @@ TEST_CASE("Testing get_height()"){
   CHECK(t5->get_height() == -1);
   t5->setup();
   CHECK(t5->get_height() == 2);
-  t5->insert(1);
+  t5->rinsert(1);
   CHECK(t5->get_height() == 3);
-  t5->insert(100);
+  t5->rinsert(100);
   CHECK(t5->get_height() == 3);
-  t5->insert(-1);
+  t5->rinsert(-1);
   CHECK(t5->get_height() == 4);
-  t5->delete_val(100);
+  t5->remove(100);
   CHECK(t5->get_height() == 4);
-  t5->delete_val(-1);
+  t5->remove(-1);
   CHECK(t5->get_height() == 3);
 }
 

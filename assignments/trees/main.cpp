@@ -50,20 +50,20 @@ int main()
 
   std::cout << "\nDeleting values in the tree" << '\n';
   std::cout << "Deleting 10" << '\n';
-  t->delete_val(10);
+  t->remove(10);
   std::cout << t->get_debug_string() << '\n';
   std::cout << "Deleting 15" << '\n';
-  t->delete_val(15);
+  t->remove(15);
   std::cout << t->get_debug_string() << '\n';
   std::cout << "Deleting 8" << '\n';
-  t->delete_val(8);
+  t->remove(8);
   std::cout << t->get_debug_string() << '\n';
   std::cout << "Deleting 5" << '\n';
-  t->delete_val(5);
+  t->remove(5);
   std::cout << t->get_debug_string() << '\n';
   std::cout << "Deleting 100" << '\n';
   try{
-    t->delete_val(100);
+    t->remove(100);
   } catch (int e){
     std::cout << "\tTried to delete a value that was not in the tree" << '\n';
   }
