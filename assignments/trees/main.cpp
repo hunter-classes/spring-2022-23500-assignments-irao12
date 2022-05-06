@@ -45,6 +45,9 @@ int main()
     std::cout << v << " not found\n";
   }
 
+  std::cout << "\nNumber of leaves: " << t->get_leaf_count()<< '\n';
+  std::cout << "Height of the tree: " << t->get_height() << '\n';
+
   std::cout << "\nDeleting values in the tree" << '\n';
   std::cout << "Deleting 10" << '\n';
   t->delete_val(10);
@@ -67,6 +70,7 @@ int main()
   std::cout << t->get_debug_string() << '\n';
 
   std::cout << "\nCreating a binary search tree of random values using rinsert" << '\n';
+
 
   BSTree *random_t = new BSTree();
 

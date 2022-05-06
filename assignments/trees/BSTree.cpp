@@ -9,16 +9,10 @@
  values in N's left subtree are less than the value in N and all the
  values in N's right subtree are greater than the value in N.
 
-
-
-
 */
 BSTree::BSTree(){
   root = nullptr;
 }
-
-
-
 
 // Traversal - visit every node in the tree
 // O(n)
@@ -27,48 +21,13 @@ std::string BSTree::traverse(Node *n){
 
   if (n==nullptr){
     return "";
-  } else {
-
-
-    /*
-     *  pre-order traversal
-
-     1. process the node
-     2. recurse to left subtree
-     3. recurse to right subtree
-
-     a = std::to_string(n->getData());
-     b =  traverse(n->getLeft());
-     c =  traverse(n->getRight());
-
-
-     * post-order traversal
-
-     1. recurse to left subtree
-     2. recurse to right subtree
-     3. process the node
-
-     a =  traverse(n->getLeft());
-     b =  traverse(n->getRight());
-     c = std::to_string(n->getData());
-
-    */
-
-    /*
-	in-order traversal
-
-	1. recurse left subtree
-	2. process node
-	3. recurse right subtree
-    */
-
+  }
+  else {
     a =  traverse(n->getLeft());
     b = std::to_string(n->getData());
     c =  traverse(n->getRight());
 
     return a + ", " + b+ ", " + c;
-
-
   }
 };
 
@@ -123,9 +82,7 @@ int BSTree::search(int value){
   // an int, we can't return an int to represent
   // not found so we'll throw an exception
 
-  throw 1; // we should define our exceptions.
-
-
+  throw TREE_ERR_NO_VAL; // we should define our exceptions.
 
 }
 
@@ -178,7 +135,7 @@ void BSTree::insert(int value){
 int BSTree::rsearch(int value, Node *p){
   //If we ever reach nullptr, throw an exception
   if (p == nullptr){
-    throw 1;
+    throw TREE_ERR_NO_VAL;
   }
 
   int data = p->getData();
@@ -237,6 +194,7 @@ void BSTree::delete_val(int value){
   Node * curr = root;
   // parent keeps track of the parent node of curr
   Node * parent = nullptr;
+  // found is true if the value exists in the tree
   bool found = false;
 
   while (curr){
@@ -287,15 +245,18 @@ void BSTree::delete_val(int value){
         Node * temp_parent, * temp;
         temp_parent = curr;
         temp = curr->getLeft();
+        // if the left subtree is a linked-list, just shift the list to curr
         if (!temp->getRight()){
           curr->setData(temp->getData());
           curr->setLeft(temp->getLeft());
         }
         else{
+          //reach the node with the largest value in the left subtree
           while (temp->getRight()){
             temp_parent = temp;
             temp = temp->getRight();
           }
+
           curr->setData(temp->getData());
           delete temp;
           temp_parent -> setRight(nullptr);
@@ -305,7 +266,41 @@ void BSTree::delete_val(int value){
       break;
     }
   }
-  if (!found) throw 1;
+  // if the value is not in the tree, throw an exception
+  if (!found) throw TREE_ERR_NO_VAL;
+}
+
+int BSTree::get_leaf_count(Node * n){
+  if (n == nullptr){
+    return 0;
+  }
+  else if (!n->getLeft() && !n->getRight()){
+    return 1;
+  }
+  return get_leaf_count(n->getLeft()) + get_leaf_count(n->getRight());
+}
+
+int BSTree::get_leaf_count(){
+  return get_leaf_count(root);
+}
+
+int BSTree::get_height(Node * n){
+  // the root is height 0
+  if (n == nullptr){
+    return -1;
+  }
+  int left_height = get_height(n->getLeft());
+  int right_height = get_height(n->getRight());
+
+  //the height of the tree is the height of the larger subtree + 1
+  if (left_height < right_height){
+    return right_height + 1;
+  }
+  return left_height + 1;
+}
+
+int BSTree::get_height(){
+  return get_height(root);
 }
 
 /* void BSTree::rdelete(int value, Node * parent, Node * curr){
