@@ -78,13 +78,16 @@ TEST_CASE("Testing remove"){
   }
   t3.setup();
   CHECK(t3.get_debug_string() == ", 3, , 5, , 8, , 10, , 15, , 20, , 30, ");
-  t3.remove(10);
-  CHECK(t3.get_debug_string() == ", 3, , 5, , 8, , 15, , 20, , 30, ");
-
+  // no children
   t3.remove(30);
-  CHECK(t3.get_debug_string() == ", 3, , 5, , 8, , 15, , 20, ");
-  t3.remove(5);
-  CHECK(t3.get_debug_string() == ", 3, , 8, , 15, , 20, ");
+  CHECK(t3.get_debug_string() == ", 3, , 5, , 8, , 10, , 15, , 20, ");
+  // with only a left child
+  t3.remove(3);
+  CHECK(t3.get_debug_string() == ", 5, , 8, , 10, , 15, , 20, ");
+  // with only a right child
+  t3.remove(10);
+  // with both a left and right child
+  CHECK(t3.get_debug_string() == ", 5, , 8, , 15, , 20, ");
 
   try{
     t3.remove(100);
@@ -97,17 +100,18 @@ TEST_CASE("Testing remove"){
     CHECK(e == 1);
   }
   try{
-    t3.remove(5);
+    t3.remove(10);
   } catch (int e){
     CHECK(e == 1);
   }
 
   t3.remove(15);
-  CHECK(t3.get_debug_string() == ", 3, , 8, , 20, ");
-  t3.remove(3);
+  CHECK(t3.get_debug_string() == ", 5, , 8, , 20, ");
+  t3.remove(5);
   CHECK(t3.get_debug_string() == ", 8, , 20, ");
   t3.remove(8);
   CHECK(t3.get_debug_string() == ", 20, ");
+  // tree is just the root
   t3.remove(20);
   CHECK(t3.get_debug_string() == "");
 
