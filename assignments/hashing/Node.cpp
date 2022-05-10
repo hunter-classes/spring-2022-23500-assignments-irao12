@@ -10,6 +10,10 @@ Node::Node(Person *p){
   this->next = nullptr;
 }
 
+Node::~Node(){
+  delete person;
+}
+
 Node::Node(Person *p, Node *next){
   this->person = p;
   this->next = next;

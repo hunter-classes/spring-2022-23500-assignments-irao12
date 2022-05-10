@@ -15,7 +15,7 @@ List::~List(){
   head = nullptr;
 }
 
-void List::insert(Person* p){
+void List::insert(Person *p){
   //Create a new node
   Node *new_node = new Node(p);
   //Insert the new node
@@ -56,9 +56,12 @@ std::string List::toString(){
   Node *walker = head;
   std::string s = "";
   while (walker != nullptr){
-    s = s + walker->getPerson()->get_name() + "-->";
+    s = s + " " + walker->getPerson()->get_name() + " |";
     walker = walker->getNext();
   }
-  s = s + "nullptr";
   return s;
+}
+
+Node * List::get_head(){
+  return head;
 }

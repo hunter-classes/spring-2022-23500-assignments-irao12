@@ -11,4 +11,5 @@ public:
   std::string toString();
   Node * locate(int index);
   void remove(int index);
+  Node * get_head();
 };

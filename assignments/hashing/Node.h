@@ -9,6 +9,8 @@ private:
 public:
   Node();
   Node(Person *p);
+  ~Node();
+  
   Node(Person *p, Node *next);
 
   void setPerson(Person *data);
