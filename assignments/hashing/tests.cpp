@@ -10,6 +10,7 @@ Person * p2 = new Person("Abraham", "Lincoln", 2);
 Person * p3 = new Person("John", "Cena", 3);
 Person * p4 = new Person("Lebron", "James", 4);
 Person * p5 = new Person("George", "Washington", 5);
+Person * p6 = new Person("Michael", "Jordan", 6);
 
 TEST_CASE("Testing hash_func"){
   CHECK(dict->hash_func("test") == 3);
@@ -36,7 +37,7 @@ TEST_CASE("Testing insert and get_names"){
   CHECK(dict->get_names() == "| Cena, John | James, Lebron | Lincoln, Abraham | Bond, James | Rao, Ivan |");
   dict->insert(p5);
   CHECK(dict->get_names() == "| Washington, George | Cena, John | James, Lebron | Lincoln, Abraham | Bond, James | Rao, Ivan |");
-  dict->insert(new Person("Michael", "Jordan", 6));
+  dict->insert(p6);
   CHECK(dict->get_names() == "| Washington, George | Cena, John | James, Lebron | Jordan, Michael | Lincoln, Abraham | Bond, James | Rao, Ivan |");
 }
 
@@ -53,4 +54,6 @@ TEST_CASE("Testing retrieve"){
     CHECK(p == p2);
     p = dict->retrieve("Washington, George");
     CHECK(p == p5);
+
+    delete dict;
 }
