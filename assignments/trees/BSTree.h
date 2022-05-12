@@ -4,6 +4,8 @@
 #include "Node.h"
 
 #define TREE_ERR_NO_VAL 1
+#define TREE_ERR_EMPTY 2
+#define TREE_ERR_EXCEEDS_HEIGHT 4
 
 class BSTree{
  private:
@@ -11,6 +13,7 @@ class BSTree{
   std::string traverse(Node *n);
   int get_leaf_count(Node * n);
   int get_height(Node * n);
+  int get_level_sum(Node *n, int curr, int level);
 public:
   BSTree();
 

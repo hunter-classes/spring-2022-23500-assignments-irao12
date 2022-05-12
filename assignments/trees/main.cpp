@@ -47,6 +47,7 @@ int main()
 
   std::cout << "\nNumber of leaves: " << t->get_leaf_count()<< '\n';
   std::cout << "Height of the tree: " << t->get_height() << '\n';
+  std::cout << "Sum of the tree at level 2: " << t->get_level_sum(2) << '\n';
 
   std::cout << "\nDeleting values in the tree" << '\n';
   std::cout << "Deleting 10" << '\n';

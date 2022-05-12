@@ -156,50 +156,43 @@ TEST_CASE("Testing get_height()"){
   CHECK(t5->get_height() == 4);
   t5->remove(-1);
   CHECK(t5->get_height() == 3);
+  delete t5;
 }
 
-
-/*
-TEST_CASE("Testing rdelete"){
-  BSTree t3;
-  try{
-    t3.rdelete(2);
-  } catch (int e){
-    CHECK(e == 1);
-  }
-
-  t3.setup();
-  CHECK(t3.get_debug_string() == ", 3, , 5, , 8, , 10, , 15, , 20, , 30, ");
-  t3.rdelete(10);
-  CHECK(t3.get_debug_string() == ", 3, , 5, , 8, , 15, , 20, , 30, ");
-  t3.rdelete(30);
-  CHECK(t3.get_debug_string() == ", 3, , 5, , 8, , 15, , 20, ");
-  t3.rdelete(5);
-  CHECK(t3.get_debug_string() == ", 3, , 8, , 15, , 20, ");
+TEST_CASE("Testing get_level_sum"){
+  BSTree * t6 = new BSTree();
 
   try{
-    t3.rdelete(100);
+    t6->get_level_sum(0);
   } catch (int e){
-    CHECK(e == 1);
+    CHECK(e == TREE_ERR_EMPTY);
   }
-  try{
-    t3.rdelete(10);
+  t6->setup();
+
+  /*
+  0           10
+            /    \
+  1        5      20
+         /  \    /   \
+  2     3   8   15   30
+  */
+
+  try {
+    t6->get_level_sum(3);
   } catch (int e){
-    CHECK(e == 1);
-  }
-  try{
-    t3.rdelete(5);
-  } catch (int e){
-    CHECK(e == 1);
+    CHECK(e == TREE_ERR_EXCEEDS_HEIGHT);
   }
 
-  t3.rdelete(15);
-  CHECK(t3.get_debug_string() == ", 3, , 8, , 20, ");
-  t3.rdelete(3);
-  CHECK(t3.get_debug_string() == ", 8, , 20, ");
-  t3.rdelete(8);
-  CHECK(t3.get_debug_string() == ", 20, ");
-  t3.rdelete(20);
-  CHECK(t3.get_debug_string() == "");
+  CHECK(t6->get_level_sum(0) == 10);
+  CHECK(t6->get_level_sum(1) == 25);
+  CHECK(t6->get_level_sum(2) == 56);
+  t6->remove(3);
+  CHECK(t6->get_level_sum(2) == 53);
+  t6->rinsert(32);
+  t6->rinsert(17);
+  CHECK(t6->get_level_sum(3) == 49);
+  t6->remove(20);
+  CHECK(t6->get_level_sum(1) == 22);
+
+
 }
-*/

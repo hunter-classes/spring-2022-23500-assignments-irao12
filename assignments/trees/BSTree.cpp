@@ -215,3 +215,23 @@ int BSTree::get_height(Node * n){
 int BSTree::get_height(){
   return get_height(root);
 }
+
+int BSTree::get_level_sum(Node *n, int curr, int level){
+  if (n == nullptr) return 0;
+  if (curr == level){
+    return n->getData();
+  }
+  return get_level_sum(n->getLeft(), curr+1, level)
+         + get_level_sum(n->getRight(), curr+1, level);
+}
+
+int BSTree::get_level_sum(int level){
+  // 0 -> root's level
+  if (root == nullptr){
+    throw TREE_ERR_EMPTY;
+  }
+  if (get_height() < level){
+    throw TREE_ERR_EXCEEDS_HEIGHT;
+  }
+  return get_level_sum(root, 0, level);
+}
