@@ -6,7 +6,7 @@ int main(){
   Dictionary * dict = new Dictionary();
   std::cout << "Dictionary: " << dict->get_names() << '\n';
 
-  Person *p0 = new Person("Rao", "Ivan", 0);
+  Person *p0 = new Person("Ivan", "Rao", 0);
   Person *p1 = new Person("James", "Bond", 1);
   Person *p2 = new Person("Abraham", "Lincoln", 2);
   Person *p3 = new Person("John", "Cena", 3);
@@ -16,7 +16,7 @@ int main(){
 
   std::cout << "\nHash of James Bond: " << dict->hash_func(p1->get_name()) << '\n';
 
-  std::cout << "\nInserting 5 people into the Dictionary" << '\n';
+  std::cout << "\nInserting 7 people into the Dictionary" << '\n';
   dict->insert(p0);
   dict->insert(p1);
   dict->insert(p2);
