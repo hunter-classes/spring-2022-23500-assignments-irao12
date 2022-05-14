@@ -180,7 +180,13 @@ TEST_CASE("Testing get_level_sum"){
   try {
     t6->get_level_sum(3);
   } catch (int e){
-    CHECK(e == TREE_ERR_EXCEEDS_HEIGHT);
+    CHECK(e == TREE_ERR_LEVEL_DOESNT_EXIST);
+  }
+
+  try {
+    t6->get_level_sum(-2);
+  } catch(int e){
+    CHECK(e == TREE_ERR_LEVEL_DOESNT_EXIST);
   }
 
   CHECK(t6->get_level_sum(0) == 10);

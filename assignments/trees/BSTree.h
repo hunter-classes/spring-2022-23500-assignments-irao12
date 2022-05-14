@@ -5,7 +5,7 @@
 
 #define TREE_ERR_NO_VAL 1
 #define TREE_ERR_EMPTY 2
-#define TREE_ERR_EXCEEDS_HEIGHT 4
+#define TREE_ERR_LEVEL_DOESNT_EXIST 4
 
 class BSTree{
  private:

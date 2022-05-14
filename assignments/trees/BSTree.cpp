@@ -230,8 +230,11 @@ int BSTree::get_level_sum(int level){
   if (root == nullptr){
     throw TREE_ERR_EMPTY;
   }
+  if (level < 0){
+    throw TREE_ERR_LEVEL_DOESNT_EXIST;
+  }
   if (get_height() < level){
-    throw TREE_ERR_EXCEEDS_HEIGHT;
+    throw TREE_ERR_LEVEL_DOESNT_EXIST;
   }
   return get_level_sum(root, 0, level);
 }
