@@ -30,7 +30,7 @@ int main(){
   std::cout << "\nRetrieving the address of George Washington from the Dictionary: " << dict->retrieve("Washington, George")<< '\n';
   std::cout << "Address of George Washington: " << p5 << '\n';
 
-  std::cout << "Retrieving the addres of Joe Biden: " << dict->retrieve("Biden, Joe") << '\n';
+  std::cout << "Retrieving the address of Joe Biden: " << dict->retrieve("Biden, Joe") << '\n';
 
   return 0;
 }
